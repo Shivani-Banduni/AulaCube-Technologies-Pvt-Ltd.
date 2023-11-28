@@ -1,7 +1,9 @@
 import React, { useState ,useEffect} from 'react';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-
+import { useContext } from 'react';
+import { Taskcontext } from './ContextProvider';
 const AddTask= () => {
+  // const {finalData,setFinalData}=useContext(Taskcontext)
 const [data,setdata]=useState({
    taskname: '',
 description: '',

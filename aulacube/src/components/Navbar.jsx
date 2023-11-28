@@ -9,6 +9,7 @@ const Navbar = () => {
       <Link to='/'>        <Button color="inherit" sx={{ color: 'white' }}><b>Add Task</b></Button></Link>
       <Link to='/tasklist'>        <Button color="inherit" sx={{ color: 'white' }}><b>Task List</b></Button></Link>
       <Link to='/editask'>        <Button color="inherit" sx={{ color: 'white' }}><b>Edit Task</b></Button></Link>
+
       </Toolbar>
     </AppBar>
   );

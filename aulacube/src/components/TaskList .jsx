@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Table, TableRow, TableCell, TableBody, TableHead, Button } from '@mui/material';
 import '../App.css';
+import { useContext } from 'react';
 import Editask from './Editask';
+import { Taskcontext } from './ContextProvider';
+import { Link } from 'react-router-dom';
+
 
 const Tasklist = () => {
-  const [tasks, setTasks] = useState([]);
+   
+//   const [tasks, setTasks] = useState([]);
+  const {tasks,setTasks}=useContext(Taskcontext)
+
   const [edit,setedit]=useState(false)
   const task = JSON.parse(localStorage.getItem('finaldata'));
 
@@ -17,7 +24,8 @@ const Tasklist = () => {
   }, []);
 
 
-  function handledit(){
+  function handledit(index){
+      console.log(index,'index')
      setedit(true) 
   }
 
@@ -37,8 +45,8 @@ const Tasklist = () => {
               <TableCell>{task.taskname}</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>
-                {edit? window.location.href='/editask':<Button  onClick={handledit} variant="contained" color="success">Edit</Button>
-}
+                {/* {edit==true? */}
+                 <Link to={`/editask/:${index}`}><Button >Edit</Button></Link>   
 
 
               </TableCell>

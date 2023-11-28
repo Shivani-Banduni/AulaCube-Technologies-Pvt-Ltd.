@@ -1,8 +1,12 @@
 import React from 'react';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
-const Editask = () => {
+const Editask = ({index}) => {
 
+    const   id=useParams()
+    console.log('id',id.index)
+// console.log(index,'index')
     const handleEdit=()=>{
 
     }

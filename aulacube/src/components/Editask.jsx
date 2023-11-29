@@ -1,14 +1,40 @@
 import React from 'react';
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { Taskcontext } from './ContextProvider';
+const Editask = () => {
+const[editdata,seteditdata]=React.useState ({})
 
-const Editask = ({index}) => {
 
-    const   id=useParams()
-    console.log('id',id.index)
-// console.log(index,'index')
-    const handleEdit=()=>{
 
+const{tasks,setTasks}=useContext(Taskcontext)
+
+    const   idd=useParams().index
+
+ 
+
+function handleEditChange(e){
+    seteditdata({...editdata,[e.target.name]:e.target.value})
+}
+
+    const handleEdit=(e)=>{
+        e.preventDefault()
+const editedData= {
+    id : idd,
+    ...editdata
+}
+console.log(editedData,"editeddata")
+console.log(editedData,'editedData');
+
+const newTasks = tasks.map((el)=>{
+    if (el.id == editedData.id){
+       return editedData
+    }
+    return el
+})
+const task = localStorage.setItem('finaldata',JSON.stringify(newTasks));
+setTasks(newTasks)
     }
     return (
         <div style={{ width: '300px', margin: 'auto', marginTop: '40px' }}>
@@ -19,8 +45,7 @@ const Editask = ({index}) => {
           label="Task Name"
           variant="outlined"
           fullWidth
-        //   value={data.taskname}
-        //   onChange={handlechange}
+          onChange={handleEditChange}
           required
           margin="normal"
         />
@@ -35,6 +60,7 @@ const Editask = ({index}) => {
           fullWidth
         //   value={data.description}
         //   onChange={handlechange}
+        onChange={handleEditChange}
 
           margin="normal"
         />
@@ -47,6 +73,7 @@ const Editask = ({index}) => {
             labelId="priority-label"
             id="priority"
             // onChange={handlechange}
+            onChange={handleEditChange}
 
             label="Priority Level"
             required

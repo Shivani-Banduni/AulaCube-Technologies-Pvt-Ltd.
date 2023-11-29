@@ -5,14 +5,12 @@ import { useContext } from 'react';
 import Editask from './Editask';
 import { Taskcontext } from './ContextProvider';
 import { Link } from 'react-router-dom';
-
+// import { useId } from 'react';
 
 const Tasklist = () => {
-   
-//   const [tasks, setTasks] = useState([]);
-  const {tasks,setTasks}=useContext(Taskcontext)
+    const {tasks,setTasks} = useContext(Taskcontext)
+  const [flag,setflag] = useState(false)
 
-  const [edit,setedit]=useState(false)
   const task = JSON.parse(localStorage.getItem('finaldata'));
 
   useEffect(() => {
@@ -21,12 +19,16 @@ const Tasklist = () => {
     setTasks(task)
     }
     console.log(tasks,'tasks')
-  }, []);
+
+    
+  }, [tasks]);
 
 
-  function handledit(index){
-      console.log(index,'index')
-     setedit(true) 
+  function handleDelete(id){
+      console.log('delet',id)
+      const deletedData= tasks.filter((el)=> el.id!== id)
+      console.log(deletedData,'deletedATA')
+      localStorage.setItem('finaldata',JSON.stringify(deletedData));
   }
 
   return (
@@ -40,21 +42,25 @@ const Tasklist = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {tasks.map((task, index) => (
-            <TableRow key={index}>
-              <TableCell>{task.taskname}</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>
-                {/* {edit==true? */}
-                 <Link to={`/editask/:${index}`}><Button >Edit</Button></Link>   
+         
+       
+{        tasks.map((task) => (
+            <TableRow key={task.id}>
+             <TableCell>{task.taskname}</TableCell>
+            <TableCell>Status</TableCell>
+           <TableCell>
+               {/* {edit==true? */}
+                 <Link to={`/editask/${task.id}`}><Button >Edit</Button></Link>   
 
 
-              </TableCell>
+             </TableCell>
               <TableCell>
-                <Button variant="outlined" color="error">Delete</Button>
+                <Button variant="outlined" color="error" onClick={()=>handleDelete(task.id)}>Delete</Button>
               </TableCell>
             </TableRow>
-          ))}
+         ))
+}
+         
         </TableBody>
       </Table>
     </div>
@@ -62,3 +68,6 @@ const Tasklist = () => {
 };
 
 export default Tasklist;
+
+
+

@@ -2,7 +2,7 @@
 
 This project is a Task Management Application created using React, allowing users to perform various task-related actions such as adding, editing, deleting tasks, and marking tasks as completed.
 
-Components
+# Components
 Task List Component
 Displays a list of tasks showing the task name and status (completed or not).
 
@@ -29,10 +29,10 @@ Task List: Utilizes the Task List Component to display tasks.
 Add Task Modal/Form: Utilizes the Add Task Modal/Form Component for adding new tasks.
 
 
-Getting Started
+# Getting Started
 To run the project locally:
 
-Clone this repository.
+# Clone this repository.
 Install dependencies using npm install.
 
 Run the application using npm start.

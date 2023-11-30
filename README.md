@@ -32,7 +32,7 @@ Add Task Modal/Form: Utilizes the Add Task Modal/Form Component for adding new t
 # Getting Started
 To run the project locally:
 
-# Clone this repository.
+ Clone this repository.
 Install dependencies using npm install.
 
 Run the application using npm start.

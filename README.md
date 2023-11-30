@@ -31,6 +31,8 @@ Task List: Utilizes the Task List Component to display tasks.
 
 Add Task Modal/Form: Utilizes the Add Task Modal/Form Component for adding new tasks.
 
+![Screenshot 2023-12-01 at 1 07 04 AM](https://github.com/Shivani-Banduni/AulaCube-Technologies-Pvt-Ltd./assets/97527063/c55c4133-6681-40ba-9b54-ac3f871366cb)
+
 
 # Getting Started
 To run the project locally:

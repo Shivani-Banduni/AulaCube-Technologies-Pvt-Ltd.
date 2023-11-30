@@ -1,5 +1,8 @@
 # AulaCube-Technologies-Pvt-Ltd.
 
+![Screenshot 2023-12-01 at 1 06 44 AM](https://github.com/Shivani-Banduni/AulaCube-Technologies-Pvt-Ltd./assets/97527063/4c62af22-2456-4dee-8595-9940f53ae70f)
+
+
 This project is a Task Management Application created using React, allowing users to perform various task-related actions such as adding, editing, deleting tasks, and marking tasks as completed.
 
 # Components

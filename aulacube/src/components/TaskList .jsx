@@ -5,62 +5,74 @@ import { useContext } from 'react';
 import Editask from './Editask';
 import { Taskcontext } from './ContextProvider';
 import { Link } from 'react-router-dom';
-// import { useId } from 'react';
 
 const Tasklist = () => {
-    const {tasks,setTasks} = useContext(Taskcontext)
-  const [flag,setflag] = useState(false)
-
-  const task = JSON.parse(localStorage.getItem('finaldata'));
+  const { tasks, setTasks } = useContext(Taskcontext);
+  const [div, selectediv] = useState([]);
 
   useEffect(() => {
-    console.log(task,'task')
-    if (task) {
-    setTasks(task)
+    const taskData = JSON.parse(localStorage.getItem('finaldata'));
+    if (taskData) {
+      setTasks(taskData);
     }
-    console.log(tasks,'tasks')
+  }, [setTasks]);
 
-    
-  }, [tasks]);
+  function handleDelete(id) {
+    const deletedData = tasks.filter((el) => el.id !== id);
+    localStorage.setItem('finaldata', JSON.stringify(deletedData));
+    window.location.reload();
+  }
 
-
-  function handleDelete(id){
-      console.log('delet',id)
-      const deletedData= tasks.filter((el)=> el.id!== id)
-      console.log(deletedData,'deletedATA')
-      localStorage.setItem('finaldata',JSON.stringify(deletedData));
+  function handlestatus(e, id) {
+    const newarr = [...div];
+    newarr[id] = e.target.value === 'completed';
+    selectediv(newarr);
   }
 
   return (
-    <div >
+    <div>
       <Table>
         <TableHead>
           <TableRow>
             <TableCell><h1>Task Name</h1></TableCell>
             <TableCell><h1>Status</h1></TableCell>
-          
           </TableRow>
         </TableHead>
         <TableBody>
-         
-       
-{        tasks.map((task) => (
+          {tasks.map((task) => (
             <TableRow key={task.id}>
-             <TableCell>{task.taskname}</TableCell>
-            <TableCell>Status</TableCell>
-           <TableCell>
-               {/* {edit==true? */}
-                 <Link to={`/editask/${task.id}`}><Button >Edit</Button></Link>   
-
-
-             </TableCell>
+              <TableCell style={{ textDecoration: div[task.id] ? 'line-through' : 'none' }}>
+                {task.taskname}
+              </TableCell>
               <TableCell>
-                <Button variant="outlined" color="error" onClick={()=>handleDelete(task.id)}>Delete</Button>
+                <label>
+                  <input
+                    onChange={(e) => handlestatus(e, task.id)}
+                    type="radio"
+                    name={`status_${task.id}`}
+                    value='completed'
+                  />
+                  Completed
+                </label>
+                <br />
+                <label>
+                  <input
+                    onChange={(e) => handlestatus(e, task.id)}
+                    name={`status_${task.id}`}
+                    type="radio"
+                    value='Notcompleted'
+                  />
+                  Not Complete
+                </label>
+              </TableCell>
+              <TableCell>
+                <Link to={`/editask/${task.id}`}><Button>Edit</Button></Link>
+              </TableCell>
+              <TableCell>
+                <Button variant="outlined" color="error" onClick={() => handleDelete(task.id)}>Delete</Button>
               </TableCell>
             </TableRow>
-         ))
-}
-         
+          ))}
         </TableBody>
       </Table>
     </div>
@@ -68,6 +80,3 @@ const Tasklist = () => {
 };
 
 export default Tasklist;
-
-
-

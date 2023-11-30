@@ -35,6 +35,7 @@ const newTasks = tasks.map((el)=>{
 })
 const task = localStorage.setItem('finaldata',JSON.stringify(newTasks));
 setTasks(newTasks)
+alert('Your data is updated in Tasklist ')
     }
     return (
         <div style={{ width: '300px', margin: 'auto', marginTop: '40px' }}>
